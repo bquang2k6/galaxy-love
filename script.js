@@ -589,8 +589,8 @@ scene.add(planet);
 const ringTexts = [
   'Galaxy of love For you ...',//untuk deskripsi planet layer 1
   "I love you",//untuk deskripsi planet layer 2
-  "♡Happy Anniversary♡",//untuk deskripsi planet layer 3
-  "13/09/2025",//untuk deskripsi planet layer 4
+  "♡Thanh Thảo♡",//untuk deskripsi planet layer 3
+  "♡I love you♡",//untuk deskripsi planet layer 4
   ...(window.dataCCD && window.dataCCD.data.ringTexts ? window.dataCCD.data.ringTexts : [])
 ];
 
@@ -1067,7 +1067,11 @@ function createHintText() {
   canvas.width = canvas.height = canvasSize;
   const context = canvas.getContext('2d');
   const fontSize = 50;
-  const text = 'Happy Girlfriend Day!';
+  const texts = [
+    "Happy Girlfriend Day!",
+    "I love you ♡",
+    "I will not forget you ♡."
+  ];
   context.font = `bold ${fontSize}px Arial, sans-serif`;
   context.textAlign = 'center';
   context.textBaseline = 'middle';

@@ -79,7 +79,7 @@ const galaxyParameters = {
   outsideColor: new THREE.Color(0x48b8b8),
 };
 
-const defaultHeartImages = Array.from({ length: 3 }, (_, i) => `images/img${i + 1}.jpeg`);
+const defaultHeartImages = Array.from({ length: 5 }, (_, i) => `images/img${i + 1}.jpeg`);
 
 const heartImages = [
   ...(window.dataCCD?.data?.heartImages || []),
@@ -585,11 +585,10 @@ planet.position.set(0, 0, 0);
 scene.add(planet);
 
 
-//Ganti Deskripsi Planet
 const ringTexts = [
-  'Galaxy of love For you ...',//untuk deskripsi planet layer 1
-  "I love you",//untuk deskripsi planet layer 2
-  "♡Thanh Thảo♡",//untuk deskripsi planet layer 3
+  'Galaxy of love For you ...',
+  "I love you",
+  "♡Thanh Thảo♡",
   ...(window.dataCCD && window.dataCCD.data.ringTexts ? window.dataCCD.data.ringTexts : [])
 ];
 
@@ -677,7 +676,7 @@ function createTextRings() {
     ctx.textAlign = 'left';
     ctx.textBaseline = 'alphabetic';
 
-    ctx.shadowColor = '#e0b3ff';
+    ctx.shadowColor = '#3f0052ff';
     ctx.shadowBlur = 18;
     ctx.lineWidth = 7;
     ctx.strokeStyle = '#fff';
@@ -782,32 +781,6 @@ function animatePlanetSystem() {
   }
 }
 
-
-let galaxyAudio = null;
-
-function preloadGalaxyAudio() {
-  const audioSources = [
-   "https://www.youtube.com/watch?v=d4OMqGKBl6E&list=RDd4OMqGKBl6E&start_radio=1&ab_channel=ARS"
-  ];
-
-  const randomIndex = Math.floor(Math.random() * audioSources.length);
-  const selectedSrc = audioSources[randomIndex];
-
-  galaxyAudio = new Audio(selectedSrc);
-  galaxyAudio.loop = true;
-  galaxyAudio.volume = 1.0;
-
-  galaxyAudio.preload = "auto";
-}
-
-function playGalaxyAudio() {
-  if (galaxyAudio) {
-    galaxyAudio.play().catch(err => {
-      console.warn("Audio play blocked or delayed:", err);
-    });
-  }
-}
-preloadGalaxyAudio();
 
 
 
@@ -1080,7 +1053,7 @@ function createHintText() {
     const y = canvasSize / 2 - ((texts.length - 1) * fontSize * 0.6) / 2 + index * fontSize * 0.9;
     context.shadowColor = '#ffb3de';
     context.shadowBlur = 5;
-    context.lineWidth = 2;
+    context.lineWidth = 1;
     context.strokeStyle = 'rgba(255, 200, 220, 0.8)';
     context.strokeText(line, canvasSize / 2, y);
     context.shadowColor = '#e0b3ff';
@@ -1214,7 +1187,6 @@ function onCanvasClick(event) {
     introStarted = true;
     fadeInProgress = true;
     document.body.classList.add("intro-started");
-    playGalaxyAudio();
 
     startCameraAnimation();
 

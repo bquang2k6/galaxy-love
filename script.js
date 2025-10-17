@@ -1068,7 +1068,6 @@ function createHintText() {
   const fontSize = 50;
 
   const texts = [
-    "Happy Girlfriend Day!",
     "I love you 💖",
     "Thanh Thảo"
   ];

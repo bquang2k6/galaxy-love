@@ -56,6 +56,29 @@
   <div id="info"></div>
 <h1 style="position: fixed; bottom: 10px; right: 10px; font-size: 18px; font-family: Arial, sans-serif; color: white; background: rgba(0, 0, 0, 0.4); padding: 6px 12px; border-radius: 8px; z-index: 9999;">
 </h1>
+  <audio id="player" src="./yeuem.mp3" preload="auto"></audio>
+
+  <script>
+    // Hàm phát nhạc
+    function playMusic() {
+      const audio = document.getElementById("player");
+      if (audio.paused) {
+        audio.play().then(() => {
+          console.log("🎵 Nhạc đã phát!");
+        }).catch(err => {
+          console.log("Không thể phát nhạc:", err);
+        });
+      }
+    }
+
+    // Khi người dùng click lần đầu vào màn hình => phát nhạc
+    document.addEventListener("click", function handleFirstClick() {
+      playMusic();
+      // Chỉ chạy 1 lần duy nhất
+      document.removeEventListener("click", handleFirstClick);
+    });
+  </script>
+
 
 
   <script type="module" src="./script.js"></script>

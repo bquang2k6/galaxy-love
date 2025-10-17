@@ -590,7 +590,6 @@ const ringTexts = [
   'Galaxy of love For you ...',//untuk deskripsi planet layer 1
   "I love you",//untuk deskripsi planet layer 2
   "♡Thanh Thảo♡",//untuk deskripsi planet layer 3
-  "♡I love you♡",//untuk deskripsi planet layer 4
   ...(window.dataCCD && window.dataCCD.data.ringTexts ? window.dataCCD.data.ringTexts : [])
 ];
 
@@ -1067,28 +1066,33 @@ function createHintText() {
   canvas.width = canvas.height = canvasSize;
   const context = canvas.getContext('2d');
   const fontSize = 50;
+
   const texts = [
     "Happy Girlfriend Day!",
-    "I love you ♡",
-    "I will not forget you ♡."
+    "I love you 💖",
+    "Thanh Thảo"
   ];
+
   context.font = `bold ${fontSize}px Arial, sans-serif`;
   context.textAlign = 'center';
   context.textBaseline = 'middle';
-  context.shadowColor = '#ffb3de';
-  context.shadowBlur = 5;
-  context.lineWidth = 2;
-  context.strokeStyle = 'rgba(255, 200, 220, 0.8)';
-  context.strokeText(text, canvasSize / 2, canvasSize / 2);
-  context.shadowColor = '#e0b3ff';
-  context.shadowBlur = 5;
-  context.lineWidth = 2;
-  context.strokeStyle = 'rgba(220, 180, 255, 0.5)';
-  context.strokeText(text, canvasSize / 2, canvasSize / 2);
-  context.shadowColor = 'transparent';
-  context.shadowBlur = 0;
-  context.fillStyle = 'white';
-  context.fillText(text, canvasSize / 2, canvasSize / 2);
+
+  texts.forEach((line, index) => {
+    const y = canvasSize / 2 - ((texts.length - 1) * fontSize * 0.6) / 2 + index * fontSize * 0.9;
+    context.shadowColor = '#ffb3de';
+    context.shadowBlur = 5;
+    context.lineWidth = 2;
+    context.strokeStyle = 'rgba(255, 200, 220, 0.8)';
+    context.strokeText(line, canvasSize / 2, y);
+    context.shadowColor = '#e0b3ff';
+    context.shadowBlur = 5;
+    context.strokeStyle = 'rgba(220, 180, 255, 0.5)';
+    context.strokeText(line, canvasSize / 2, y);
+    context.shadowColor = 'transparent';
+    context.fillStyle = 'white';
+    context.fillText(line, canvasSize / 2, y);
+  });
+
   const textTexture = new THREE.CanvasTexture(canvas);
   textTexture.needsUpdate = true;
   const textMaterial = new THREE.MeshBasicMaterial({
